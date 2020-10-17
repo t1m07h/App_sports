@@ -24,7 +24,7 @@ class RegisterFragment : Fragment() {
     }
 
     fun showDatePickerDialog(v: View) {
-        val fragmentManager = FragmentManager
+        val fragmentManager = parentFragmentManager
         val dateFragment = DatePickerFragment()
         dateFragment.show(fragmentManager, "datePicker")
     }
