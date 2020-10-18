@@ -6,7 +6,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_login.*
 import org.w3c.dom.Text
 import java.io.IOException
 import java.lang.Exception
@@ -16,7 +16,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login)
 
         var uName: String?
         var pass: String?
@@ -24,7 +24,6 @@ class LoginActivity : AppCompatActivity() {
         val connect_btn: Button = findViewById(R.id.login_or_register_btn)
         val editName: Button = findViewById(R.id.userNameEdit)
         val editPass: Button = findViewById(R.id.passwordEdit)
-
 
         connect_btn.setOnClickListener {
             uName = editName.text.toString()
@@ -34,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 val fragmentTransaction = supportFragmentManager.beginTransaction()
                 val fragment = RegisterFragment()
-                fragmentTransaction.add(R.layout.activity_main, fragment)
+                fragmentTransaction.add(R.layout.activity_login, fragment)
                 fragmentTransaction.commit()
                 // TODO: 15/10/20 go to register fragment
             }
