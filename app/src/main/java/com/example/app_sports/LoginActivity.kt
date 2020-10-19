@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
 import org.w3c.dom.Text
@@ -22,8 +23,8 @@ class LoginActivity : AppCompatActivity() {
         var pass: String?
 
         val connect_btn: Button = findViewById(R.id.login_or_register_btn)
-        val editName: Button = findViewById(R.id.userNameEdit)
-        val editPass: Button = findViewById(R.id.passwordEdit)
+        val editName = findViewById(R.id.userNameEdit) as EditText
+        val editPass = findViewById(R.id.passwordEdit) as EditText
 
         connect_btn.setOnClickListener {
             uName = editName.text.toString()
@@ -33,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 val fragmentTransaction = supportFragmentManager.beginTransaction()
                 val fragment = RegisterFragment()
-                fragmentTransaction.add(R.layout.activity_login, fragment)
+                fragmentTransaction.add(R.id.login, fragment)
                 fragmentTransaction.commit()
                 // TODO: 15/10/20 go to register fragment
             }
