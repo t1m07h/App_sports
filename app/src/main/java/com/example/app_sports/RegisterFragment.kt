@@ -20,7 +20,7 @@ import java.util.*
 class RegisterFragment : Fragment(){
 
     lateinit var date_btn: Button
-    lateinit var setListener: DatePickerDialog.OnDateSetListener
+    lateinit var setListener: SetListener
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,17 +35,14 @@ class RegisterFragment : Fragment(){
             val year = c.get(Calendar.YEAR)
             val month = c.get(Calendar.MONTH)
             val day = c.get(Calendar.DAY_OF_MONTH)
-            val datePickerDialog = DatePickerDialog(requireContext(), null, year, month, day)
+
+            setListener = SetListener(date_tv)
+
+            val datePickerDialog = DatePickerDialog(requireContext(), setListener, year, month, day)
             datePickerDialog.show()
         })
 
         return  view
     }
-
-//    fun showDatePickerDialog(v: View) {
-//        val fragmentManager = parentFragmentManager
-//        val dateFragment = DatePickerFragment()
-//        dateFragment.show(fragmentManager, "datePicker")
-//    }
 
 }
