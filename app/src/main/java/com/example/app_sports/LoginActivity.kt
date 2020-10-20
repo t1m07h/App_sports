@@ -23,8 +23,8 @@ class LoginActivity : AppCompatActivity() {
         var pass: String?
 
         val connect_btn: Button = findViewById(R.id.login_or_register_btn)
-        val editName = findViewById(R.id.userNameEdit) as EditText
-        val editPass = findViewById(R.id.passwordEdit) as EditText
+        val editName = findViewById(R.id.userNameLoginEdit) as EditText
+        val editPass = findViewById(R.id.passwordLoginEdit) as EditText
 
         connect_btn.setOnClickListener {
             uName = editName.text.toString()
