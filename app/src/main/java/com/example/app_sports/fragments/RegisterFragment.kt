@@ -1,4 +1,4 @@
-package com.example.app_sports
+package com.example.app_sports.fragments
 
 import android.app.DatePickerDialog
 import android.os.Bundle
@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.app_sports.*
 import com.example.app_sports.Model.UserData
 import java.util.*
 
@@ -48,14 +49,14 @@ class RegisterFragment : Fragment(){
         
         submitBtn.setOnClickListener(View.OnClickListener {
             if (!(isEmpty(user_name_et.text) or isEmpty(first_name_et.text) or isEmpty(last_name_et.text) or isEmpty(email_et.text) or isEmpty(user_name_et.text) or isEmpty(password1_et.text))) {
-                if (isPasswordValid(password1_et.text, password2_et.text)) {
-                    val data: UserData(
-                    user_name_et.text,
-                    first_name_et.text,
-                    last_name_et.text,
-                    email_et.text,
-                    date_et.text,
-                    password1_et.text
+                if (isPasswordValid(password1_et.text.toString(), password2_et.text.toString())) {
+                    val data = UserData(
+                    user_name_et.text.toString(),
+                    first_name_et.text.toString(),
+                    last_name_et.text.toString(),
+                    email_et.text.toString(),
+                    date_et.text.toString(),
+                    password1_et.text.toString()
                     )
                     if (isValid(data, true)) {
                         // TODO: 20/10/20 write data to db
@@ -69,15 +70,6 @@ class RegisterFragment : Fragment(){
         })
 
         return  view
-    }
-
-    fun isValid(user: UserData, new: Boolean) {
-        if (user.userName.length > 42 or user.firstName.length > 42 or user.lastName.length > 42 or user.email.length or user.password.length > 73)
-            return false
-        if (!(isAlpha(user.firstName) or isAlpha(user.lastName)))
-            return false
-        if (!checkEmail(user.email))
-            return false
     }
 
     fun isPasswordValid(pass1: String, pass2: String): Boolean {
