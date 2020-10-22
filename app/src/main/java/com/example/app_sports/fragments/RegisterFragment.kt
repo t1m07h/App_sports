@@ -50,14 +50,11 @@ class RegisterFragment : Fragment(){
         submitBtn.setOnClickListener(View.OnClickListener {
             if (!(isEmpty(user_name_et.text) or isEmpty(first_name_et.text) or isEmpty(last_name_et.text) or isEmpty(email_et.text) or isEmpty(user_name_et.text) or isEmpty(password1_et.text))) {
                 if (isPasswordValid(password1_et.text.toString(), password2_et.text.toString())) {
-                    val data = UserData(
-                    user_name_et.text.toString(),
-                    first_name_et.text.toString(),
-                    last_name_et.text.toString(),
-                    email_et.text.toString(),
-                    date_et.text.toString(),
-                    password1_et.text.toString()
-                    )
+                    var data = UserData(email_et.text.toString(), password1_et.text.toString())
+                    data.userName = user_name_et.text.toString()
+                    data.firstName = first_name_et.text.toString()
+                    data.lastName = last_name_et.text.toString()
+                    data.birthDate = date_et.text.toString()
                     if (isValid(data, true)) {
                         // TODO: 20/10/20 write data to db
                         Toast.makeText(this.context, "Cool", Toast.LENGTH_SHORT).show()

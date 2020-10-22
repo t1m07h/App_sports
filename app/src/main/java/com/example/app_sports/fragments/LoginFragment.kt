@@ -1,7 +1,6 @@
 package com.example.app_sports.fragments
 
 import android.os.Bundle
-import android.service.autofill.UserData
 import android.text.TextUtils.isEmpty
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.app_sports.R
 import com.example.app_sports.isValid
+import com.example.app_sports.Model.UserData
 
 class LoginFragment: Fragment() {
     override fun onCreateView(
@@ -27,14 +27,7 @@ class LoginFragment: Fragment() {
 
         submit_btn.setOnClickListener(View.OnClickListener {
             if (!(isEmpty(email_et.text.toString()) or isEmpty(password_et.text.toString()))) {
-                val data = UserData(
-                    null,
-                    null,
-                    null,
-                    email_et.text.toString(),
-                    null,
-                    password_et.text.toString()
-                )
+                var data = UserData(email_et.text.toString(), password_et.text.toString())
                 if (isValid(data, false)) {
                     // TODO: 21/10/20 try login
                     Toast.makeText(this.context, "Cool too", Toast.LENGTH_SHORT).show()

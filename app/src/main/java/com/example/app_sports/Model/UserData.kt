@@ -1,10 +1,8 @@
 package com.example.app_sports.Model
 
-data class UserData (
-    val userName: String?,
-    val firstName: String?,
-    val lastName: String?,
-    val email: String,
-    val birthDate: String?,
-    val password: String
-)
+data class UserData (val email: String, val password: String) {
+    var userName: String? = null
+    var firstName: String? = null
+    var lastName: String? = null
+    var birthDate: String? = null
+}
