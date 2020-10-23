@@ -29,7 +29,7 @@ class LoginFragment: Fragment() {
             if (!(isEmpty(email_et.text.toString()) or isEmpty(password_et.text.toString()))) {
                 var data = UserData(email_et.text.toString(), password_et.text.toString())
                 if (isValid(data, false)) {
-                    // TODO: 21/10/20 try login
+                    // TODO: 21/10/20 login
                     Toast.makeText(this.context, "Cool too", Toast.LENGTH_SHORT).show()
                 }
             } else {
