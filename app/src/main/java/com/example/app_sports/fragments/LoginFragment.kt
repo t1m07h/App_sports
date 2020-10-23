@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.app_sports.R
 import com.example.app_sports.isValid
 import com.example.app_sports.Model.UserData
@@ -29,11 +30,12 @@ class LoginFragment: Fragment() {
             if (!(isEmpty(email_et.text.toString()) or isEmpty(password_et.text.toString()))) {
                 var data = UserData(email_et.text.toString(), password_et.text.toString())
                 if (isValid(data, false)) {
-                    // TODO: 21/10/20 login
-                    Toast.makeText(this.context, "Cool too", Toast.LENGTH_SHORT).show()
+                    // TODO: 23/10/20 request server to connect and if not registered go to register fragment
+                    findNavController().navigate(R.id.action_loginFragment2_to_registerFragment)
                 }
             } else {
-                Toast.makeText(this.context, "Please fill out all fields", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this.context, "Please fill out all fields", Toast.LENGTH_SHORT)
+                    .show()
             }
         })
 
