@@ -1,5 +1,6 @@
 package com.example.app_sports.fragments
 
+import android.app.DownloadManager
 import android.os.Bundle
 import android.text.TextUtils.isEmpty
 import android.view.LayoutInflater
@@ -13,6 +14,11 @@ import androidx.navigation.fragment.findNavController
 import com.example.app_sports.R
 import com.example.app_sports.isValid
 import com.example.app_sports.Model.UserData
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.example.app_sports.URL
 
 class LoginFragment: Fragment() {
     override fun onCreateView(
@@ -31,6 +37,11 @@ class LoginFragment: Fragment() {
                 var data = UserData(email_et.text.toString(), password_et.text.toString())
                 if (isValid(data, false)) {
                     // TODO: 23/10/20 request server to connect and if not registered go to register fragment
+                    val queue = Volley.newRequestQueue(this.context)
+                    val stringRequest = StringRequest(Request.Method.GET, URL, Response.Listener<String> { response ->
+                        Toast.makeText(this.context, "${response.substring(0, 500)}")
+                    })
+                    queue.add(stringRequest)
                     findNavController().navigate(R.id.action_loginFragment2_to_registerFragment)
                 }
             } else {
