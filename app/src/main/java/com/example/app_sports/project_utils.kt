@@ -27,7 +27,3 @@ fun isValid(user: UserData, new: Boolean): Boolean {
         return false
     return true
 }
-
-fun find_last_id(): Int {
-    return 1
-}

@@ -20,6 +20,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.app_sports.URL
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.w3c.dom.Text
 
@@ -38,10 +39,13 @@ class LoginFragment: Fragment() {
         submit_btn.setOnClickListener(View.OnClickListener {
             if (!(isEmpty(email_et.text.toString()) or isEmpty(password_et.text.toString()))) {
                 var data = UserData(email_et.text.toString(), password_et.text.toString())
+
                 if (isValid(data, false)){
                     val queue = Volley.newRequestQueue(this.context)
+
                     val stringRequest = StringRequest(URL, Response.Listener<String> { response ->
-                        // TODO: 25/10/20 fetch user data 
+                        // TODO: 25/10/20 fetch user data
+                        val user: UserData = Gson().fromJson(response, UserData::class.java)
                         Toast.makeText(this.context, "${response.substring(0, 500)}", Toast.LENGTH_SHORT).show()
                     }, Response.ErrorListener { response ->
                         // TODO: 25/10/20 check for the response and go to register if user not found

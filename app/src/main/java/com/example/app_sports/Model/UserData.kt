@@ -1,9 +1,10 @@
 package com.example.app_sports.Model
 
-import com.example.app_sports.find_last_id
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-data class UserData (val email: String, val password: String) {
-    val userId: Int = find_last_id()
+@Entity()
+data class UserData (@PrimaryKey(autoGenerate = true) val userId: Int, val email: String, val password: String) {
     var userName: String = ""
     var firstName: String = ""
     var lastName: String = ""
