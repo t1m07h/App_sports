@@ -44,8 +44,8 @@ class LoginFragment: Fragment() {
                     val queue = Volley.newRequestQueue(this.context)
 
                     val stringRequest = StringRequest(URL, Response.Listener<String> { response ->
-                        // TODO: 25/10/20 fetch user data
                         val user: UserData = Gson().fromJson(response, UserData::class.java)
+                        // TODO: 25/10/20 login (save the data in the local db and start new user activity 
                         Toast.makeText(this.context, "${response.substring(0, 500)}", Toast.LENGTH_SHORT).show()
                     }, Response.ErrorListener { response ->
                         // TODO: 25/10/20 check for the response and go to register if user not found
