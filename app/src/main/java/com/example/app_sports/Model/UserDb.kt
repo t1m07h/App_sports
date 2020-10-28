@@ -9,8 +9,8 @@ import java.lang.Appendable
 @Database(version = 1, entities = [UserData::class])
 abstract class UserDb: RoomDatabase() {
 	companion object {
-		fun get(application: Application): UserData {
-			return Room.databaseBuilder(application, UserData::class.java, "user").build()
+		fun get(application: Application): UserDb {
+			return Room.databaseBuilder(application, UserDb::class.java, "user").build()
 		}
 	}
 	abstract fun get_user_dao(): UserDao

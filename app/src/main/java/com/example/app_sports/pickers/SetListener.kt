@@ -1,4 +1,4 @@
-package com.example.app_sports
+package com.example.app_sports.pickers
 
 import android.app.DatePickerDialog
 import android.widget.DatePicker
