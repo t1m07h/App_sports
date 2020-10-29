@@ -1,6 +1,7 @@
 package com.example.app_sports.fragments
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils.isEmpty
 import androidx.fragment.app.Fragment
@@ -68,7 +69,10 @@ class RegisterFragment : Fragment(){
                     if (isValid(new, true)) {
                         ConnViewModel.add_user(new)
                         // TODO: 28/10/20 add the new user to the distant db
-                        // TODO: 28/10/20 now connect and navigate to main_activity 
+                        // TODO: 28/10/20 now connect and navigate to main_activity
+                        val intent: Intent = Intent(this, HomeActivity::class.java)
+
+                        startActivity(intent)
                     }
                 } else {
                     Toast.makeText(this.context, "Passwords don't match", Toast.LENGTH_SHORT).show()
