@@ -1,6 +1,8 @@
 package com.example.app_sports.fragments
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils.isEmpty
@@ -18,12 +20,14 @@ import com.example.app_sports.Model.UserData
 import com.example.app_sports.pickers.SetListener
 import com.example.app_sports.viewmodel.ConnectionViewModel
 import java.util.*
+import kotlin.collections.ArrayList
 
 class RegisterFragment : Fragment(){
 
     lateinit var date_btn: Button
     lateinit var setListener: SetListener
     private lateinit var ConnViewModel: ConnectionViewModel
+    private val sportsList = arrayOf<String>("Bike", "Running", "Swimming", "Tennis", "BasketBall")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,15 +49,13 @@ class RegisterFragment : Fragment(){
         val main_sport_tv = view.findViewById<TextView>(R.id.mainSportEdit)
 
         date_et.setOnClickListener(View.OnClickListener {
-//            val c: Calendar = Calendar.getInstance()
-//            val year = c.get(Calendar.YEAR)
-//            val month = c.get(Calendar.MONTH)
-//            val day = c.get(Calendar.DAY_OF_MONTH)
-
             setListener = SetListener(date_et)
-
             val datePickerDialog = DatePickerDialog(requireContext(), setListener, 2000, 1, 1)
             datePickerDialog.show()
+        })
+
+        main_sport_tv.setOnClickListener(View.OnClickListener {
+            sportsAlertDialog(requireContext(), main_sport_tv)
         })
         
         submitBtn.setOnClickListener(View.OnClickListener {
@@ -70,9 +72,9 @@ class RegisterFragment : Fragment(){
                         ConnViewModel.add_user(new)
                         // TODO: 28/10/20 add the new user to the distant db
                         // TODO: 28/10/20 now connect and navigate to main_activity
-                        val intent: Intent = Intent(this, HomeActivity::class.java)
+//                        val intent: Intent = Intent(this, HomeActivity::class.java)
 
-                        startActivity(intent)
+//                        startActivity(intent)
                     }
                 } else {
                     Toast.makeText(this.context, "Passwords don't match", Toast.LENGTH_SHORT).show()
@@ -84,6 +86,16 @@ class RegisterFragment : Fragment(){
         return  view
     }
 
+    fun sportsAlertDialog(context: Context, tv: TextView) {
+        val builder = AlertDialog.Builder(context)
+        with(builder) {
+            setTitle("What is your favorite sport ?")
+            setItems(sportsList) { dialog, which ->
+                tv.setText(sportsList[which])
+            }
+            show()
+        }
+    }
     fun isPasswordValid(pass1: String, pass2: String): Boolean {
         // TODO: 21/10/20
         return true
