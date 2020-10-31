@@ -15,7 +15,7 @@
             android:name=".home_activity.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".login_activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

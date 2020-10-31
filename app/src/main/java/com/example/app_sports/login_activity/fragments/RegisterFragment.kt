@@ -1,9 +1,8 @@
-package com.example.app_sports.fragments
+package com.example.app_sports.login_activity.fragments
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils.isEmpty
 import androidx.fragment.app.Fragment
@@ -17,10 +16,9 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.app_sports.*
 import com.example.app_sports.Model.UserData
-import com.example.app_sports.pickers.SetListener
-import com.example.app_sports.viewmodel.ConnectionViewModel
-import java.util.*
-import kotlin.collections.ArrayList
+import com.example.app_sports.login_activity.isValid
+import com.example.app_sports.login_activity.pickers.SetListener
+import com.example.app_sports.login_activity.viewmodel.ConnectionViewModel
 
 class RegisterFragment : Fragment(){
 

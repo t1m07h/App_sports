@@ -1,4 +1,4 @@
-package com.example.app_sports.repository
+package com.example.app_sports.login_activity.repository
 
 import com.example.app_sports.Model.UserDao
 import com.example.app_sports.Model.UserData

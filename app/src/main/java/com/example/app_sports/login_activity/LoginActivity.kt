@@ -1,14 +1,10 @@
-package com.example.app_sports
+package com.example.app_sports.login_activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.example.app_sports.fragments.RegisterFragment
+import com.example.app_sports.R
 
 class LoginActivity : AppCompatActivity() {
     val TAG = "application"
