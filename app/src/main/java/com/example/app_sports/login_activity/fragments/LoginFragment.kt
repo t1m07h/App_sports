@@ -18,15 +18,23 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.app_sports.URL
+import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.gson.Gson
 
 class LoginFragment: Fragment() {
+
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_login, container, false)
+        auth = FirebaseAuth.getInstance()
+
         return view
     }
 
@@ -44,16 +52,16 @@ class LoginFragment: Fragment() {
                 var data = UserData(0, email_et.text.toString(), password_et.text.toString())
 
                 if (isValid(data, false)){
-                    val queue = Volley.newRequestQueue(this.context)
-
-                    val stringRequest = StringRequest(URL, Response.Listener<String> { response ->
-                        val user: UserData = Gson().fromJson(response, UserData::class.java)
-                        // TODO: 28/10/20 check for the response and go to register if user not found or login
-                        // TODO: 25/10/20 login (save the data in the local db and start new user activity )
-                        Toast.makeText(this.context, "${response.substring(0, 500)}", Toast.LENGTH_SHORT).show()
-                    }, Response.ErrorListener { response ->
-                        Toast.makeText(this.context, "${response}", Toast.LENGTH_SHORT).show() })
-                    queue.add(stringRequest)
+//                    val queue = Volley.newRequestQueue(this.context)
+//
+//                    val stringRequest = StringRequest(URL, { response ->
+//                        val user: UserData = Gson().fromJson(response, UserData::class.java)
+//                        // TODO: 28/10/20 check for the response and go to register if user not found or login
+//                        // TODO: 25/10/20 login (save the data in the local db and start new user activity )
+//                        Toast.makeText(this.context, "${response.substring(0, 500)}", Toast.LENGTH_SHORT).show()
+//                    }, { response ->
+//                        Toast.makeText(this.context, "${response}", Toast.LENGTH_SHORT).show() })
+//                    queue.add(stringRequest)
                 }
             } else {
                 Toast.makeText(this.context, "Please fill out all fields", Toast.LENGTH_SHORT).show()
@@ -63,5 +71,16 @@ class LoginFragment: Fragment() {
         create_account_tv.setOnClickListener(View.OnClickListener {
             findNavController().navigate(R.id.action_loginFragment2_to_registerFragment)
         })
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser: FirebaseUser? = auth.currentUser
+        updateUI(currentUser)
+    }
+
+    fun updateUI(currentUser: FirebaseUser?) {
+
     }
 }

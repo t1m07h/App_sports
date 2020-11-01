@@ -1,6 +1,8 @@
 package com.example.app_sports.login_activity
 
+import android.util.Patterns
 import com.example.app_sports.Model.UserData
+import java.util.regex.Pattern
 
 fun isAlpha(str: String): Boolean{
     val my_str: CharArray = str.toCharArray()
@@ -12,18 +14,12 @@ fun isAlpha(str: String): Boolean{
     return true
 }
 
-fun checkEmail(email: String):Boolean {
-    // TODO: 21/10/20 check if there is an @ in the string
-    // TODO: 21/10/20 https://hunter.io/api-documentation/v2#email-verifier
-    return true
-}
-
 fun isValid(user: UserData, new: Boolean): Boolean {
     if ((user.userName.length > 42) or (user.firstName.length > 42) or (user.lastName.length > 42) or (user.email.length > 42) or (user.password.length > 73))
         return false
     if (!(isAlpha(user.firstName) or isAlpha(user.lastName)))
         return false
-    if (!checkEmail(user.email))
+    if (!Patterns.EMAIL_ADDRESS.matcher(user.email).matches())
         return false
     return true
 }
