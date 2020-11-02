@@ -51,20 +51,24 @@ class LoginFragment: Fragment() {
             if (!(isEmpty(email_et.text.toString()) or isEmpty(password_et.text.toString()))) {
                 var data = UserData(0, email_et.text.toString(), password_et.text.toString())
 
-                if (isValid(data, false)){
-//                    val queue = Volley.newRequestQueue(this.context)
-//
-//                    val stringRequest = StringRequest(URL, { response ->
-//                        val user: UserData = Gson().fromJson(response, UserData::class.java)
-//                        // TODO: 28/10/20 check for the response and go to register if user not found or login
-//                        // TODO: 25/10/20 login (save the data in the local db and start new user activity )
-//                        Toast.makeText(this.context, "${response.substring(0, 500)}", Toast.LENGTH_SHORT).show()
-//                    }, { response ->
-//                        Toast.makeText(this.context, "${response}", Toast.LENGTH_SHORT).show() })
-//                    queue.add(stringRequest)
+                if (isValid(data, false)) {
+                    auth.signInWithEmailAndPassword(data.email, data.password)
+                        .addOnCompleteListener(this) { task ->
+                            if (task.isSuccessful) {
+                                val user = auth.currentUser
+                                // TODO: 02/11/20 save the data in the local db and start new activity
+                            } else {
+                                Toast.makeText(
+                                    this.context,
+                                    "Login failed ! Try again later",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
                 }
             } else {
-                Toast.makeText(this.context, "Please fill out all fields", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this.context, "Please fill out all fields", Toast.LENGTH_SHORT)
+                    .show()
             }
         })
 

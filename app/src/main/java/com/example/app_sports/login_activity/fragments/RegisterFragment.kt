@@ -70,10 +70,10 @@ class RegisterFragment : Fragment(){
                     .addOnCompleteListener(activity!!.parent) { task ->
                         if (task.isSuccessful) {
                             val user = auth.currentUser
-                            // TODO: 01/11/20 start main_activity and finish the current one
+                            // TODO: 01/11/20 go to the informations provider fragment, start main_activity then finish the current one
 //                            val intent: Intent = Intent(this, HomeActivity::class.java)
 //                            startActivity(intent)
-//                            finish()
+//                            activity.finish()
                         } else {
                             Toast.makeText(this.context, "Sign up failed, try again later", Toast.LENGTH_SHORT).show()
                         }
