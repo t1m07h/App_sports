@@ -1,4 +1,4 @@
-package com.example.app_sports.login_activity.viewmodel
+package com.example.app_sports.login_activity.fragments.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
