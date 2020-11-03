@@ -4,9 +4,6 @@ import android.text.TextUtils
 import android.text.TextUtils.isEmpty
 import android.util.Patterns
 import android.widget.EditText
-import android.widget.Toast
-import com.example.app_sports.Model.UserData
-import java.util.regex.Pattern
 
 fun isAlpha(str: String): Boolean{
     val my_str: CharArray = str.toCharArray()
@@ -40,7 +37,7 @@ fun check_data_login(email: EditText, password: EditText): Boolean {
 }
 
 
-fun check_data_register(email: EditText, password: EditText, password2: EditText, userName: EditText): Boolean {
+fun check_data_register(email: EditText, password: EditText, password2: EditText): Boolean {
     var result: Boolean = true
 
     if (TextUtils.isEmpty(email.text.toString())) {
@@ -65,12 +62,6 @@ fun check_data_register(email: EditText, password: EditText, password2: EditText
         password.requestFocus()
         password2.requestFocus()
 //        Toast.makeText(this, "Password don't matche", Toast.LENGTH_SHORT).show()
-        result = false
-    }
-
-    if (TextUtils.isEmpty(userName.text.toString())) {
-        userName.error = "Please enter a user name"
-        userName.requestFocus()
         result = false
     }
     return result

@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.app_sports.R
-import com.example.app_sports.Model.UserData
 import com.example.app_sports.home_activity.HomeActivity
 import com.example.app_sports.login_activity.check_data_login
 import com.example.app_sports.login_activity.fragments.viewmodel.ConnectionViewModel
@@ -40,7 +39,6 @@ class LoginFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         val email_et = view.findViewById<EditText>(R.id.emailLoginEdit)
         val password_et = view.findViewById<EditText>(R.id.passwordLoginEdit)
         val submit_btn = view.findViewById<Button>(R.id.login_or_register_btn)
@@ -48,16 +46,12 @@ class LoginFragment: Fragment() {
 
         submit_btn.setOnClickListener(View.OnClickListener {
             if (check_data_login(email_et, password_et)) {
-                var data = UserData(0, email_et.text.toString(), password_et.text.toString())
 
-                auth.signInWithEmailAndPassword(data.email, data.password)
-                    .addOnCompleteListener(activity!!.parent) { task ->
+                auth.signInWithEmailAndPassword(email_et.text.toString(), password_et.text.toString())
+                    .addOnCompleteListener(requireActivity()) { task ->
                         if (task.isSuccessful) {
                             val user = auth.currentUser
-                            connectionViewModel.add_user(data)
-                            val intent: Intent = Intent(this.context, HomeActivity::class.java)
-                            startActivity(intent)
-                            activity!!.finish()
+                                updateUI(user)
                         } else {
                             Toast.makeText(this.context, "Login failed ! Please try again later", Toast.LENGTH_SHORT).show()
                         }
@@ -72,12 +66,22 @@ class LoginFragment: Fragment() {
 
     override fun onStart() {
         super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser: FirebaseUser? = auth.currentUser
         updateUI(currentUser)
     }
 
     fun updateUI(currentUser: FirebaseUser?) {
-
+        if (currentUser != null) {
+            // TODO: 02/11/20 check if the user has completed his profile
+            if (currentUser.isEmailVerified) {
+                val intent: Intent = Intent(this.context, HomeActivity::class.java)
+                startActivity(intent)
+                requireActivity().finish()
+            } else {
+                Toast.makeText(this.context, "Please check your emails", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            Toast.makeText(this.context, "Failed to login", Toast.LENGTH_SHORT).show()
+        }
     }
 }
