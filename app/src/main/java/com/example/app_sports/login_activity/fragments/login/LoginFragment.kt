@@ -18,6 +18,10 @@ import com.example.app_sports.login_activity.check_data_login
 import com.example.app_sports.login_activity.fragments.viewmodel.ConnectionViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class LoginFragment: Fragment() {
 
@@ -72,8 +76,8 @@ class LoginFragment: Fragment() {
 
     fun updateUI(currentUser: FirebaseUser?) {
         if (currentUser != null) {
-            // TODO: 02/11/20 check if the user has completed his profile
             if (currentUser.isEmailVerified) {
+                // TODO: 02/11/20 check if the user has completed his profile
                 val intent: Intent = Intent(this.context, HomeActivity::class.java)
                 startActivity(intent)
                 requireActivity().finish()

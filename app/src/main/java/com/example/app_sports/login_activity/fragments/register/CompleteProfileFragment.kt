@@ -3,6 +3,7 @@ package com.example.app_sports.login_activity.fragments.register
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,8 +15,10 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.app_sports.Model.UserData
 import com.example.app_sports.R
+import com.example.app_sports.home_activity.HomeActivity
 import com.example.app_sports.login_activity.pickers.SetListener
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
@@ -24,7 +27,7 @@ class CompleteProfileFragment : Fragment() {
 	private val sportsList = arrayOf<String>("Bike", "Running", "Swimming", "Tennis", "BasketBall")
 	lateinit var setListener: SetListener
 	private lateinit var auth: FirebaseAuth
-	private var database = Firebase.database
+	private var db_user_ref = Firebase.database.getReference("user")
 
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
@@ -60,30 +63,39 @@ class CompleteProfileFragment : Fragment() {
 
 		confirm_btn.setOnClickListener(View.OnClickListener {
 			if (user != null) {
-				var new_user: UserData = UserData(user!!.email.toString())
-				new_user.userName = user_name_et.text.toString()
-				new_user.firstName = first_name_et.text.toString()
-				new_user.lastName = last_name_et.text.toString()
-				new_user.birthDate = date_et.text.toString()
-				new_user.mainSport = main_sport_tv.text.toString()
+				val id = db_user_ref.push().key
+				val new_user: UserData = UserData(
+					id.toString(),
+					user!!.email.toString(),
+					user_name_et.text.toString(),
+					first_name_et.text.toString(),
+					last_name_et.text.toString(),
+					date_et.text.toString(),
+					main_sport_tv.text.toString()
+				)
 
-				if (user.isEmailVerified) {
-					addToDatabase(new_user)
-				} else {
-					Toast.makeText(this.context, "Please check your emails", Toast.LENGTH_SHORT).show()
+				user.reload()
+				if (user != null) {
+					if (user.isEmailVerified) {
+						addToDatabase(new_user)
+						login(user)
+					} else {
+						Toast.makeText(this.context, "Email not verified", Toast.LENGTH_SHORT)
+							.show()
+					}
 				}
 			}
 		})
 	}
 
-	fun addToDatabase(user: UserData) {
-		val db_user_ref = database.getReference("user")
+	fun login(user: FirebaseUser?) {
+			val intent = Intent(this.context, HomeActivity::class.java)
+			startActivity(intent)
+			requireActivity().finish()
+	}
 
-		db_user_ref.child("userName").setValue(user.userName)
-		db_user_ref.child("firstName").setValue(user.firstName)
-		db_user_ref.child("lasttName").setValue(user.lastName)
-		db_user_ref.child("birthDate").setValue(user.birthDate)
-		db_user_ref.child("mainSport").setValue(user.mainSport)
+	fun addToDatabase(user: UserData) {
+		db_user_ref.child(user.id).setValue(user)
 	}
 
 	fun sportsAlertDialog(context: Context, tv: TextView) {

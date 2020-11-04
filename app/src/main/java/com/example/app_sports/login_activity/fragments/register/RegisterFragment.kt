@@ -47,13 +47,15 @@ class RegisterFragment : Fragment(){
                     .addOnCompleteListener(requireActivity()) { task ->
                         if (task.isSuccessful) {
                             val user = auth.currentUser
-                            user!!.sendEmailVerification().addOnCompleteListener { task ->
-                                if (task.isSuccessful) {
-                                    Toast.makeText(this.context, "A verification email has been sent to you", Toast.LENGTH_SHORT).show()
-                                    updateUI(user)
+                            if (user != null) {
+                                user!!.sendEmailVerification().addOnCompleteListener { task ->
+                                    if (task.isSuccessful) {
+                                        Toast.makeText(this.context, "A verification email has been sent to you", Toast.LENGTH_SHORT).show()
+                                        updateUI(user)
+                                    }
                                 }
+                                Toast.makeText(this.context, "Signed up successfully !", Toast.LENGTH_SHORT).show()
                             }
-                            Toast.makeText(this.context, "Signed up successfully !", Toast.LENGTH_SHORT).show()
                         } else {
                             Toast.makeText(this.context, "Sign up failed, try again later", Toast.LENGTH_SHORT).show()
                         }
@@ -64,7 +66,7 @@ class RegisterFragment : Fragment(){
 
     fun updateUI(currentUser: FirebaseUser?) {
         if (currentUser != null) {
-                findNavController().navigate(R.id.action_registerFragment_to_completeProfileFragment)
+            findNavController().navigate(R.id.action_registerFragment_to_completeProfileFragment)
         } else {
             Toast.makeText(this.context, "Registration failed, try again later", Toast.LENGTH_SHORT).show()
         }
