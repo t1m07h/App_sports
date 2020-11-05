@@ -75,14 +75,11 @@ class CompleteProfileFragment : Fragment() {
 				)
 
 				user.reload()
-				if (user != null) {
-					if (user.isEmailVerified) {
-						addToDatabase(new_user)
-						login(user)
-					} else {
-						Toast.makeText(this.context, "Email not verified", Toast.LENGTH_SHORT)
-							.show()
-					}
+				if (user.isEmailVerified) {
+					addToDatabase(new_user)
+					login(user)
+				} else {
+					Toast.makeText(this.context, "Email not verified", Toast.LENGTH_SHORT).show()
 				}
 			}
 		})

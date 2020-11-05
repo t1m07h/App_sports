@@ -3,12 +3,18 @@
     <item android:id="@+id/activities_flow"
         android:enabled="true"
         android:icon="@drawable/ic_add"
-        android:title="flow">
+        android:title="@string/flow">
     </item>
 
     <item android:id="@+id/user_activities"
         android:enabled="true"
         android:icon="@drawable/ic_add"
-        android:title="You">
+        android:title="@string/you">
+    </item>
+
+    <item android:id="@+id/user_profile"
+        android:enabled="true"
+        android:icon="@drawable/ic_add"
+        android:title="@string/profile">
     </item>
 </menu>

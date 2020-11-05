@@ -37,14 +37,5 @@ class HomeMainFragment : Fragment() {
 		new_activity_button.setOnClickListener(View.OnClickListener {
 			// TODO: 04/11/20 start new fragment to create an activity and add it on the activity list on the db
 		})
-
-		interface Interf {
-			fun m1(num: Int): Unit
-		}
-
-		fun main() {
-			val a: Interf = { it -> println("Hello world !!" + it.toString()) }
-		}
-
 	}
 }
