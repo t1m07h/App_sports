@@ -1,22 +1,28 @@
 package com.example.app_sports.home_activity
 
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import android.widget.TextView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.app_sports.R
-import org.w3c.dom.Text
 
 class HomeActivity : AppCompatActivity() {
+
+	val fragmentTransaction = supportFragmentManager.beginTransaction()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_home)
 		setSupportActionBar(findViewById(R.id.toolbar))
 
-		val text = findViewById<TextView>(R.id.app_bar_text)
+		val name = findViewById<TextView>(R.id.app_bar_text)
+		val add_activity_btn = findViewById<Button>(R.id.new_activity_btn)
 
-		text.text = "Yess"
+		name.text = "Yess"
+
+		add_activity_btn.setOnClickListener(View.OnClickListener {
+			fragmentTransaction.add(R.layout.fragment_new_activity)
+		})
 	}
 }

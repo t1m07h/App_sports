@@ -23,4 +23,13 @@
     <string name="you">You</string>
     <string name="flow">Flow</string>
     <string name="profile">Profile</string>
+
+    <!-- String array for new activity dropdown menu -->
+    <string-array name="Sports">
+        <item>Bike</item>
+        <item>Run</item>
+        <item>Swimming</item>
+        <item>Tennis</item>
+        <item>BasketBall</item>
+    </string-array>
 </resources>
