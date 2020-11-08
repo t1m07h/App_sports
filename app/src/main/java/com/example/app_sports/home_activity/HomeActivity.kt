@@ -5,11 +5,13 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.app_sports.NewActivityFragment
 import com.example.app_sports.R
 
 class HomeActivity : AppCompatActivity() {
 
-	val fragmentTransaction = supportFragmentManager.beginTransaction()
+	val fragmentManager = supportFragmentManager
+	val newActivityFragment: NewActivityFragment = NewActivityFragment()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -21,8 +23,9 @@ class HomeActivity : AppCompatActivity() {
 
 		name.text = "Yess"
 
+		val fragmentTransaction = fragmentManager.beginTransaction()
 		add_activity_btn.setOnClickListener(View.OnClickListener {
-			fragmentTransaction.add(R.layout.fragment_new_activity)
+			fragmentTransaction.add(R.id.main_home, newActivityFragment).commit()
 		})
 	}
 }

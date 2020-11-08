@@ -22,11 +22,11 @@ class NewActivityFragment : Fragment() {
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-		val mySpinner = view.findViewById<Spinner>(R.id.new_activity_sport)
-
-		if (mySpinner != null) {
-			val adapter = ArrayAdapter(this.context, android.R.layout.simple_spinner_item, sports)
-			mySpinner.adapter = adapter
-		}
+//		val mySpinner = view.findViewById<Spinner>(R.id.new_activity_sport)
+//
+//		if (mySpinner != null) {
+//			val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, sports)
+//			mySpinner.adapter = adapter
+//		}
 	}
 }

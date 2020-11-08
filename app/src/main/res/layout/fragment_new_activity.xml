@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewActivityFragment">
+    tools:context=".NewActivityFragment"
+    android:id="@+id/new_activity_frag">
 
     <EditText
         android:id="@+id/new_activity_title"
@@ -20,7 +21,7 @@
 
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/new_activity_sport"
-        android:layout_width="220dp"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/new_activity_title"
         app:layout_constraintStart_toStartOf="parent"
