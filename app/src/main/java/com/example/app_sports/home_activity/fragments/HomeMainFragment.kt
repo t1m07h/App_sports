@@ -19,8 +19,7 @@ class HomeMainFragment : Fragment() {
 		val view = inflater.inflate(R.layout.fragment_main_home, container, false)
 
 		val recyclerView = view.flow_recycler_view
-		val adapter =
-			FlowListAdapter()
+		val adapter = FlowListAdapter()
 		recyclerView.adapter = adapter
 		recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
@@ -32,8 +31,8 @@ class HomeMainFragment : Fragment() {
 
 		val new_activity_button = view.findViewById<Button>(R.id.new_activity_btn)
 		
-		new_activity_button.setOnClickListener(View.OnClickListener {
-			// TODO: 04/11/20 start new fragment to create an activity and add it on the activity list on the db
-		})
+//		new_activity_button.setOnClickListener(View.OnClickListener {
+//			// TODO: 04/11/20 start new fragment to create an activity and add it on the activity list on the db
+//		})
 	}
 }

@@ -7,11 +7,14 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.app_sports.NewActivityFragment
 import com.example.app_sports.R
+import com.example.app_sports.home_activity.fragments.HomeMainFragment
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
 
-	val fragmentManager = supportFragmentManager
-	val newActivityFragment: NewActivityFragment = NewActivityFragment()
+	val mainFragmentManager = supportFragmentManager
+	val newActivityFragmentManager = supportFragmentManager
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -19,13 +22,19 @@ class HomeActivity : AppCompatActivity() {
 		setSupportActionBar(findViewById(R.id.toolbar))
 
 		val name = findViewById<TextView>(R.id.app_bar_text)
-		val add_activity_btn = findViewById<Button>(R.id.new_activity_btn)
+		val add_activity_btn = findViewById<FloatingActionButton>(R.id.new_activity_btn)
+		val newActivityFragmentTransaction = newActivityFragmentManager.beginTransaction()
+		val newActivityFragment = NewActivityFragment()
+		val mainFragmentTransaction = mainFragmentManager.beginTransaction()
+		val listFlowFragment = HomeMainFragment()
 
 		name.text = "Yess"
 
-		val fragmentTransaction = fragmentManager.beginTransaction()
+		mainFragmentTransaction.add(R.id.main_home, listFlowFragment).commit()
+
 		add_activity_btn.setOnClickListener(View.OnClickListener {
-			fragmentTransaction.add(R.id.main_home, newActivityFragment).commit()
+			newActivityFragmentTransaction.add(R.id.main_home, newActivityFragment).commit()
+			name.text = "ok"
 		})
 	}
 }
