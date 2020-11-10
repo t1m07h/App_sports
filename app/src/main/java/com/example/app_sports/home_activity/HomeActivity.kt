@@ -34,7 +34,6 @@ class HomeActivity : AppCompatActivity() {
 
 		add_activity_btn.setOnClickListener(View.OnClickListener {
 			newActivityFragmentTransaction.add(R.id.main_home, newActivityFragment).commit()
-			name.text = "ok"
 		})
 	}
 }
