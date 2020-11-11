@@ -29,7 +29,7 @@ class HomeMainFragment : Fragment() {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
-		val new_activity_button = view.findViewById<Button>(R.id.new_activity_btn)
+//		val new_activity_button = view.findViewById<Button>(R.id.new_activity_btn)
 		
 //		new_activity_button.setOnClickListener(View.OnClickListener {
 //			// TODO: 04/11/20 start new fragment to create an activity and add it on the activity list on the db

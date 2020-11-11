@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/activities_flow"
+    <item android:id="@+id/ic_activities_flow"
         android:enabled="true"
         android:icon="@drawable/ic_add"
         android:title="@string/flow">
     </item>
 
-    <item android:id="@+id/user_activities"
+    <item android:id="@+id/ic_user_activities"
         android:enabled="true"
         android:icon="@drawable/ic_add"
         android:title="@string/you">
     </item>
 
-    <item android:id="@+id/user_profile"
+    <item android:id="@+id/ic_user_profile"
         android:enabled="true"
         android:icon="@drawable/ic_add"
         android:title="@string/profile">
+    </item>
+
+    <item android:id="@+id/ic_add_activity"
+        android:enabled="true"
+        android:icon="@drawable/ic_add"
+        android:title="@string/add_activity">
     </item>
 </menu>
