@@ -25,7 +25,6 @@ class HomeActivity : AppCompatActivity() {
 
 		bottom_navigation.setOnNavigationItemSelectedListener { item ->
 			when(item.itemId) {
-				// TODO: 11/11/20 check for each fragment if it is already in the foreground
 				R.id.ic_activities_flow -> replaceFragment(listFlowFragment)
 				R.id.ic_user_activities -> {
 					true
@@ -35,12 +34,8 @@ class HomeActivity : AppCompatActivity() {
 				}
 				R.id.ic_add_activity -> replaceFragment(newActivityFragment)
 			}
-			true
+			false
 		}
-
-//		add_activity_btn.setOnClickListener(View.OnClickListener {
-//			launchFragment(newActivityFragment)
-//		})
 	}
 
 	private fun replaceFragment(fragment: Fragment): Boolean {

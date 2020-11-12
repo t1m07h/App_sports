@@ -33,4 +33,9 @@
         <item>Tennis</item>
         <item>BasketBall</item>
     </string-array>
+    <string-array name="level">
+        <item>Beginner</item>
+        <item>Intermediate</item>
+        <item>High</item>
+    </string-array>
 </resources>

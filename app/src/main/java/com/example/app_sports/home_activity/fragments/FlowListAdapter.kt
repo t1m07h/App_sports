@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app_sports.R
-import com.example.app_sports.home_activity.activities_model.ActivitiesData
+import com.example.app_sports.Model.ActivitiesModel.ActivitiesData
 import kotlinx.android.synthetic.main.activity_view.view.*
 
 class FlowListAdapter(): RecyclerView.Adapter<FlowListAdapter.MyViewHolder>() {
@@ -21,9 +21,9 @@ class FlowListAdapter(): RecyclerView.Adapter<FlowListAdapter.MyViewHolder>() {
 		val current_activity = activity_list[position]
 
 		holder.itemView.activity_title.text = current_activity.title
-		holder.itemView.activity_creator.text = current_activity.creator
+		holder.itemView.activity_creator.text = current_activity.metadata.creator
 		holder.itemView.activity_date.text = current_activity.date
-		holder.itemView.activity_hour.text = current_activity.hour
+		holder.itemView.activity_hour.text = current_activity.time
 		holder.itemView.activity_place.text = current_activity.place
 		holder.itemView.activity_level.text = current_activity.level
 		// TODO: 06/11/20 set sport image

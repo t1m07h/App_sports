@@ -64,7 +64,7 @@ class CompleteProfileFragment : Fragment() {
 		confirm_btn.setOnClickListener(View.OnClickListener {
 			if (user != null) {
 				val id = db_user_ref.push().key
-				val new_user: UserData = UserData(
+				val new_user = UserData(
 					id.toString(),
 					user!!.email.toString(),
 					user_name_et.text.toString(),
