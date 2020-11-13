@@ -34,7 +34,9 @@ class NewActivityFragment : Fragment() {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		val sports = resources.getStringArray(R.array.Sports)
+		val levels = resources.getStringArray(R.array.level)
 		val sportSpinner = view.findViewById<Spinner>(R.id.new_activity_sport)
+		val levelSpinner = view.findViewById<Spinner>(R.id.new_activity_level)
 		val title_et = view.findViewById<EditText>(R.id.new_activity_title)
 		val place_et = view.findViewById<EditText>(R.id.new_activity_place)
 		val date_et = view.findViewById<EditText>(R.id.new_activity_date)
@@ -45,8 +47,13 @@ class NewActivityFragment : Fragment() {
 		val id = db_ref.push().key
 
 		if (sportSpinner != null) {
-			val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, sports)
-			sportSpinner.adapter = adapter
+			val sport_adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, sports)
+			sportSpinner.adapter = sport_adapter
+		}
+
+		if (levelSpinner != null) {
+			val level_adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, levels)
+			levelSpinner.adapter = level_adapter
 		}
 
 		add_btn.setOnClickListener(View.OnClickListener {
