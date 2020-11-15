@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.app_sports.NewActivityFragment
+import com.example.app_sports.home_activity.fragments.new_activity.NewActivityFragment
 import com.example.app_sports.R
-import com.example.app_sports.home_activity.fragments.HomeMainFragment
+import com.example.app_sports.home_activity.fragments.home.HomeMainFragment
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
@@ -17,8 +17,10 @@ class HomeActivity : AppCompatActivity() {
 		setSupportActionBar(findViewById(R.id.toolbar))
 
 		val name = findViewById<TextView>(R.id.app_bar_text)
-		val newActivityFragment = NewActivityFragment()
-		val listFlowFragment = HomeMainFragment()
+		val newActivityFragment =
+			NewActivityFragment()
+		val listFlowFragment =
+			HomeMainFragment()
 
 		replaceFragment(listFlowFragment)
 		name.text = "Yess"
