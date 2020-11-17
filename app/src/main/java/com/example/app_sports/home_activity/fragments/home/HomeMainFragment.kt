@@ -23,7 +23,7 @@ import org.w3c.dom.Text
 
 class HomeMainFragment : Fragment() {
 
-	private var db_ref = Firebase.database.getReference("activities")
+	private var db_ref = Firebase.database.getReference("user/activities")
 
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
