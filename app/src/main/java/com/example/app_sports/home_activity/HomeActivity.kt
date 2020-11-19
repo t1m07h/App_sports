@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import com.example.app_sports.home_activity.fragments.new_activity.NewActivityFragment
 import com.example.app_sports.R
 import com.example.app_sports.home_activity.fragments.home.HomeMainFragment
+import com.example.app_sports.home_activity.fragments.user_activities.UserActivitiesFragment
+import com.example.app_sports.home_activity.fragments.user_profile.UserProfileFragment
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
@@ -17,10 +19,10 @@ class HomeActivity : AppCompatActivity() {
 		setSupportActionBar(findViewById(R.id.toolbar))
 
 		val name = findViewById<TextView>(R.id.app_bar_text)
-		val newActivityFragment =
-			NewActivityFragment()
-		val listFlowFragment =
-			HomeMainFragment()
+		val newActivityFragment = NewActivityFragment()
+		val listFlowFragment = HomeMainFragment()
+		val userActivitiesFragment = UserActivitiesFragment()
+		val userProfileFragment = UserProfileFragment()
 
 		replaceFragment(listFlowFragment)
 		name.text = "Yess"
@@ -28,12 +30,8 @@ class HomeActivity : AppCompatActivity() {
 		bottom_navigation.setOnNavigationItemSelectedListener { item ->
 			when(item.itemId) {
 				R.id.ic_activities_flow -> replaceFragment(listFlowFragment)
-				R.id.ic_user_activities -> {
-					true
-				}
-				R.id.ic_user_profile -> {
-					true
-				}
+				R.id.ic_user_activities -> replaceFragment(userActivitiesFragment)
+				R.id.ic_user_profile -> replaceFragment(userProfileFragment)
 				R.id.ic_add_activity -> replaceFragment(newActivityFragment)
 			}
 			false

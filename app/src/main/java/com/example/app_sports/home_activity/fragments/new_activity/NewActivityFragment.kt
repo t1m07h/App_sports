@@ -21,7 +21,7 @@ import java.time.format.DateTimeFormatter
 class NewActivityFragment : Fragment() {
 
 	private lateinit var auth: FirebaseAuth
-	private var db_ref = Firebase.database.getReference("user")
+	private var db_ref = Firebase.database.getReference("")
 
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
