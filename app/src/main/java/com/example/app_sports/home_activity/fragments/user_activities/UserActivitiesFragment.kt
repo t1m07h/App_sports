@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app_sports.Model.ActivitiesModel.ActivitiesData
 import com.example.app_sports.R
+import com.example.app_sports.home_activity.fragments.FlowListAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -38,14 +39,15 @@ class UserActivitiesFragment : Fragment() {
 
 		val recyclerView = view.findViewById<RecyclerView>(R.id.user_recycler_view)
 		val emptyRvText = view.findViewById<TextView>(R.id.empty_user_rv)
-		// TODO: 21/11/20 set the recyclerView adapter
+		val adapter = FlowListAdapter()
+		recyclerView.adapter = adapter
 		emptyRvText.visibility = TextView.INVISIBLE
 
 		val activitiesListener = object : ValueEventListener {
 			override fun onDataChange(snapshot: DataSnapshot) {
 				val activities = snapshot.getValue<List<ActivitiesData>>()
-				if (activities != null) {
-					// TODO: 21/11/20 update recyclerView adapter
+				if(activities != null) {
+					adapter.updateList(activities!!)
 				} else {
 					emptyRvText.visibility = TextView.VISIBLE
 					recyclerView.visibility = RecyclerView.INVISIBLE

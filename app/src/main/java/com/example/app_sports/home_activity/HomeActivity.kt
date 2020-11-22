@@ -20,7 +20,8 @@ class HomeActivity : AppCompatActivity() {
 
 		val name = findViewById<TextView>(R.id.app_bar_text)
 		val newActivityFragment = NewActivityFragment()
-		val listFlowFragment = HomeMainFragment()
+		val listFlowFragment =
+			HomeMainFragment()
 		val userActivitiesFragment = UserActivitiesFragment()
 		val userProfileFragment = UserProfileFragment()
 

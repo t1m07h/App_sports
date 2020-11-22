@@ -7,19 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import android.widget.ViewFlipper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app_sports.Model.ActivitiesModel.ActivitiesData
 import com.example.app_sports.R
+import com.example.app_sports.home_activity.fragments.FlowListAdapter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_main_home.view.*
-import org.w3c.dom.Text
 
 class HomeMainFragment : Fragment() {
 
