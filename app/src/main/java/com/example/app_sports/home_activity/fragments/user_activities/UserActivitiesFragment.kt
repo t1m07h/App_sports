@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app_sports.Model.ActivitiesModel.ActivitiesData
 import com.example.app_sports.R
@@ -46,6 +48,7 @@ class UserActivitiesFragment(auth: FirebaseAuth) : Fragment() {
 			val adapter = FlowListAdapter()
 			val activitiesList = mutableListOf<ActivitiesData>()
 			recyclerView.adapter = adapter
+			recyclerView.layoutManager = LinearLayoutManager(requireContext())
 			emptyRvText.visibility = TextView.INVISIBLE
 
 			val activitiesListener = object : ValueEventListener {
