@@ -9,20 +9,23 @@ import com.example.app_sports.R
 import com.example.app_sports.home_activity.fragments.home.HomeMainFragment
 import com.example.app_sports.home_activity.fragments.user_activities.UserActivitiesFragment
 import com.example.app_sports.home_activity.fragments.user_profile.UserProfileFragment
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
+
+	private lateinit var auth: FirebaseAuth
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_home)
 		setSupportActionBar(findViewById(R.id.toolbar))
+		auth = FirebaseAuth.getInstance()
 
 		val name = findViewById<TextView>(R.id.app_bar_text)
 		val newActivityFragment = NewActivityFragment()
-		val listFlowFragment =
-			HomeMainFragment()
-		val userActivitiesFragment = UserActivitiesFragment()
+		val listFlowFragment = HomeMainFragment()
+		val userActivitiesFragment = UserActivitiesFragment(auth)
 		val userProfileFragment = UserProfileFragment()
 
 		replaceFragment(listFlowFragment)

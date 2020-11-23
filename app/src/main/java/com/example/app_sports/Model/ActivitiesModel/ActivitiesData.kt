@@ -9,4 +9,8 @@ data class ActivitiesData(
 	val time: String,
 	val level: String,
 	val metadata: ActivitiesMetadata
-)
+) {
+	constructor() : this("", "", "", "", "", "", "",
+		ActivitiesMetadata("", "", "", "")
+	){}
+}
