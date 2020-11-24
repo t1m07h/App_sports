@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app_sports.Model.ActivitiesModel.ActivitiesData
 import com.example.app_sports.R
+import com.example.app_sports.home_activity.DbValueEventListener
 import com.example.app_sports.home_activity.fragments.FlowListAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -21,11 +22,13 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import org.w3c.dom.Text
+import kotlin.collections.MutableList as MutableList
 
 class UserActivitiesFragment(auth: FirebaseAuth) : Fragment() {
 
 	private val user = auth.currentUser
 	private lateinit var db_ref : DatabaseReference
+	private var activitiesList = mutableListOf<ActivitiesData>()
 
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
@@ -44,30 +47,12 @@ class UserActivitiesFragment(auth: FirebaseAuth) : Fragment() {
 			val recyclerView = view.findViewById<RecyclerView>(R.id.user_recycler_view)
 			val emptyRvText = view.findViewById<TextView>(R.id.empty_user_rv)
 			val adapter = FlowListAdapter()
-			val activitiesList = mutableListOf<ActivitiesData>()
+
 			recyclerView.adapter = adapter
 			recyclerView.layoutManager = LinearLayoutManager(requireContext())
 			emptyRvText.visibility = TextView.INVISIBLE
 
-			val activitiesListener = object : ValueEventListener {
-				override fun onDataChange(snapshot: DataSnapshot) {
-					if (snapshot != null) {
-						for(a in snapshot.children) {
-							val activity = a.getValue(ActivitiesData::class.java)
-							activitiesList.add(activity!!)
-						}
-						adapter.updateList(activitiesList)
-					} else {
-						emptyRvText.visibility = TextView.VISIBLE
-						recyclerView.visibility = RecyclerView.INVISIBLE
-					}
-				}
-
-				override fun onCancelled(error: DatabaseError) {
-					Toast.makeText(requireContext(), error.toString(), Toast.LENGTH_SHORT).show()
-				}
-			}
-
+			val activitiesListener = DbValueEventListener(activitiesList, adapter, recyclerView, emptyRvText, requireContext())
 			db_ref.addValueEventListener(activitiesListener)
 		}
 	}
