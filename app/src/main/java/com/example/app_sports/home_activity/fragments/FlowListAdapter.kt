@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app_sports.R
 import com.example.app_sports.Model.ActivitiesModel.ActivitiesData
-import kotlinx.android.synthetic.main.activity_view.view.*
+import kotlinx.android.synthetic.main.view_activity.view.*
 
 class FlowListAdapter(): RecyclerView.Adapter<FlowListAdapter.MyViewHolder>() {
 	private var activity_list = emptyList<ActivitiesData>()
@@ -15,7 +15,7 @@ class FlowListAdapter(): RecyclerView.Adapter<FlowListAdapter.MyViewHolder>() {
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 		return MyViewHolder(
-			LayoutInflater.from(parent.context).inflate(R.layout.activity_view, parent, false)
+			LayoutInflater.from(parent.context).inflate(R.layout.view_activity, parent, false)
 		)
 	}
 

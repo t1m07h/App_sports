@@ -1,6 +1,7 @@
 package com.example.app_sports.home_activity.fragments.user_activities
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,10 +16,7 @@ import com.example.app_sports.Model.ActivitiesModel.ActivitiesData
 import com.example.app_sports.R
 import com.example.app_sports.home_activity.fragments.FlowListAdapter
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
@@ -54,8 +52,8 @@ class UserActivitiesFragment(auth: FirebaseAuth) : Fragment() {
 			val activitiesListener = object : ValueEventListener {
 				override fun onDataChange(snapshot: DataSnapshot) {
 					if (snapshot != null) {
-						for(activityL in snapshot.children) {
-							val activity = activityL.getValue(ActivitiesData::class.java)
+						for(a in snapshot.children) {
+							val activity = a.getValue(ActivitiesData::class.java)
 							activitiesList.add(activity!!)
 						}
 						adapter.updateList(activitiesList)
