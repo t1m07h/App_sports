@@ -10,6 +10,7 @@ import android.widget.AbsListView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app_sports.Model.ActivitiesModel.ActivitiesData
@@ -28,6 +29,7 @@ class UserActivitiesFragment(auth: FirebaseAuth) : Fragment() {
 
 	private val user = auth.currentUser
 	private lateinit var db_ref : DatabaseReference
+	lateinit var mUserActivitiesViewModel: UserActivitiesViewModel
 	private var activitiesList = mutableListOf<ActivitiesData>()
 
 	override fun onCreateView(
@@ -35,6 +37,7 @@ class UserActivitiesFragment(auth: FirebaseAuth) : Fragment() {
 		savedInstanceState: Bundle?
 	): View? {
 		val view = inflater.inflate(R.layout.fragment_user_activities, container, false)
+		mUserActivitiesViewModel = ViewModelProvider(this).get(UserActivitiesViewModel::class.java)
 		return view
 	}
 
@@ -52,8 +55,12 @@ class UserActivitiesFragment(auth: FirebaseAuth) : Fragment() {
 			recyclerView.layoutManager = LinearLayoutManager(requireContext())
 			emptyRvText.visibility = TextView.INVISIBLE
 
-			val activitiesListener = DbValueEventListener(activitiesList, adapter, recyclerView, emptyRvText, requireContext())
-			db_ref.addValueEventListener(activitiesListener)
+			mUserActivitiesViewModel.loadActivities(db_ref, recyclerView, emptyRvText, requireContext())
+			mUserActivitiesViewModel.
+
+//			val activitiesListener = DbValueEventListener(activitiesList, adapter, recyclerView, emptyRvText, requireContext())
+//			db_ref.addValueEventListener(activitiesListener)
+
 		}
 	}
 }
