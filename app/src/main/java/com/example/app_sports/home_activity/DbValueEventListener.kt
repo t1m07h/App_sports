@@ -13,12 +13,9 @@ import com.google.firebase.database.ValueEventListener
 import org.w3c.dom.Text
 import kotlin.coroutines.coroutineContext
 
-class DbValueEventListener(list: MutableList<ActivitiesData>, rv: RecyclerView, tv: TextView, context: Context) : ValueEventListener {
+class DbValueEventListener(list: MutableList<ActivitiesData>, context: Context) : ValueEventListener {
 
 	val list = list
-//	val adapter = adapter
-	val rv = rv
-	val tv = tv
 	val context = context
 
 	override fun onDataChange(snapshot: DataSnapshot) {
@@ -27,10 +24,6 @@ class DbValueEventListener(list: MutableList<ActivitiesData>, rv: RecyclerView, 
 				val activity = a.getValue(ActivitiesData::class.java)
 				list.add(activity!!)
 			}
-//			adapter.updateList(list)
-		} else {
-			tv.visibility = TextView.VISIBLE
-			rv.visibility = RecyclerView.INVISIBLE
 		}
 	}
 
