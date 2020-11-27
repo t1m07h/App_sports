@@ -3,6 +3,7 @@ package com.example.app_sports.home_activity.fragments.user_activities
 import android.app.Application
 import android.content.Context
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,25 +17,24 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 class UserActivitiesViewModel(application: Application) : AndroidViewModel(application) {
-	private var allActivitieslist = mutableListOf<ActivitiesData>()
 	var activitiesList = MutableLiveData<MutableList<ActivitiesData>>()
 	val ref = Firebase.database.getReference("activities")
 
 	init {
-		activitiesList.value = fetchAll(ref, application)
+		activitiesList = fetchAll(ref, application)
 	}
 
-	fun fetchAll(ref: DatabaseReference, application: Application): MutableList<ActivitiesData>? {
-		val listener = DbValueEventListener(allActivitieslist, application)
+	fun fetchAll(ref: DatabaseReference, application: Application): MutableLiveData<MutableList<ActivitiesData>> {
+		val listener = DbValueEventListener(activitiesList, application)
 		ref.addValueEventListener(listener)
-		return selectNearActivities(allActivitieslist)
+		return activitiesList
 	}
 
-	fun selectNearActivities(list: MutableList<ActivitiesData>): MutableList<ActivitiesData>? {
-		return sortActivitiesList(list)
-	}
-
-	fun sortActivitiesList(list: MutableList<ActivitiesData>): MutableList<ActivitiesData>? {
-		return (list)
-	}
+//	fun selectNearActivities(list: MutableList<ActivitiesData>): MutableList<ActivitiesData>? {
+//		return sortActivitiesList(list)
+//	}
+//
+//	fun sortActivitiesList(list: MutableList<ActivitiesData>): MutableList<ActivitiesData>? {
+//		return (list)
+//	}
 }

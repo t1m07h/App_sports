@@ -55,7 +55,7 @@ class UserActivitiesFragment(auth: FirebaseAuth) : Fragment() {
 					// TODO: 27/11/20 null list
 					adapter.updateList(list)
 				} else {
-					Toast.makeText(requireContext(), list.size.toString(), Toast.LENGTH_SHORT).show()
+//					Toast.makeText(requireContext(), list.size.toString(), Toast.LENGTH_SHORT).show()
 					emptyRvText.visibility = TextView.VISIBLE
 					recyclerView.visibility = RecyclerView.INVISIBLE
 				}
