@@ -30,11 +30,21 @@ class UserActivitiesViewModel(application: Application) : AndroidViewModel(appli
 		return activitiesList
 	}
 
-//	fun selectNearActivities(list: MutableList<ActivitiesData>): MutableList<ActivitiesData>? {
-//		return sortActivitiesList(list)
-//	}
-//
-//	fun sortActivitiesList(list: MutableList<ActivitiesData>): MutableList<ActivitiesData>? {
-//		return (list)
-//	}
+	fun selectNearActivities(list: MutableList<ActivitiesData>): MutableList<ActivitiesData>? {
+		 var i = 0
+		while(list[i] != null) {
+			if (list[i] != null) {
+				if (i > 0 and list[i - 1].date < list[i].date) {
+					val tmp = list[i]
+					list[i] = list[i - 1]
+					list[i - 1] = tmp
+				}
+			}
+		}
+		return sortActivitiesList(list)
+	}
+
+	fun sortActivitiesList(list: MutableList<ActivitiesData>): MutableList<ActivitiesData>? {
+		return (list)
+	}
 }
