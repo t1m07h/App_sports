@@ -1,5 +1,8 @@
 package com.example.app_sports.home_activity.fragments.new_activity
 
+import android.app.AlertDialog
+import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,11 +15,13 @@ import android.widget.Spinner
 import com.example.app_sports.Model.ActivitiesModel.ActivitiesData
 import com.example.app_sports.Model.ActivitiesModel.ActivitiesMetadata
 import com.example.app_sports.R
+import com.example.app_sports.login_activity.pickers.DateSetListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.stream.DoubleStream.builder
 
 class NewActivityFragment : Fragment() {
 
@@ -56,6 +61,12 @@ class NewActivityFragment : Fragment() {
 			val level_adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, levels)
 			levelSpinner.adapter = level_adapter
 		}
+
+		date_et.setOnClickListener(View.OnClickListener {
+			val setListener = DateSetListener(date_et)
+			val datePickerDialog = DatePickerDialog(requireContext(), setListener, 2020, 12, 1)
+			datePickerDialog.show()
+		})
 
 		add_btn.setOnClickListener(View.OnClickListener {
 			if (user != null && id != null) {

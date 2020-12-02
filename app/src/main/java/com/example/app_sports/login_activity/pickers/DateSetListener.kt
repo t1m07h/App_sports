@@ -4,7 +4,7 @@ import android.app.DatePickerDialog
 import android.widget.DatePicker
 import android.widget.TextView
 
-class SetListener(val date_tv: TextView): DatePickerDialog.OnDateSetListener {
+class DateSetListener(val date_tv: TextView): DatePickerDialog.OnDateSetListener {
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         var m = (month + 1).toString()
         var d: String = dayOfMonth.toString()

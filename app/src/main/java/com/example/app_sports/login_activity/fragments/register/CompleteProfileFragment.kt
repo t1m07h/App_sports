@@ -16,7 +16,7 @@ import android.widget.Toast
 import com.example.app_sports.Model.UserData
 import com.example.app_sports.R
 import com.example.app_sports.home_activity.HomeActivity
-import com.example.app_sports.login_activity.pickers.SetListener
+import com.example.app_sports.login_activity.pickers.DateSetListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.ktx.database
@@ -25,7 +25,7 @@ import com.google.firebase.ktx.Firebase
 class CompleteProfileFragment : Fragment() {
 
 	private val sportsList = arrayOf<String>("Bike", "Running", "Swimming", "Tennis", "BasketBall")
-	lateinit var setListener: SetListener
+	lateinit var setListener: DateSetListener
 	private lateinit var auth: FirebaseAuth
 	private var db_user_ref = Firebase.database.getReference("user")
 
@@ -52,7 +52,7 @@ class CompleteProfileFragment : Fragment() {
 		val user = auth.currentUser
 
 		date_et.setOnClickListener(View.OnClickListener {
-			setListener = SetListener(date_et)
+			setListener = DateSetListener(date_et)
 			val datePickerDialog = DatePickerDialog(requireContext(), setListener, 2000, 1, 1)
 			datePickerDialog.show()
 		})
