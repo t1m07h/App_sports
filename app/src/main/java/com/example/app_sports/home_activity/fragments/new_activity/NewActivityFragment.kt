@@ -3,6 +3,7 @@ package com.example.app_sports.home_activity.fragments.new_activity
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -67,6 +68,11 @@ class NewActivityFragment : Fragment() {
 			val setListener = DateSetListener(date_et)
 			val datePickerDialog = DatePickerDialog(requireContext(), setListener, 2020, 12, 1)
 			datePickerDialog.show()
+		})
+
+		time_et.setOnClickListener(View.OnClickListener {
+			val setListener = DateSetListener(time_et)
+			val timePickerDialog = TimePickerDialog(requireContext(), )
 		})
 
 		add_btn.setOnClickListener(View.OnClickListener {
