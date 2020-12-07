@@ -18,6 +18,7 @@ import com.example.app_sports.Model.ActivitiesModel.ActivitiesData
 import com.example.app_sports.Model.ActivitiesModel.ActivitiesMetadata
 import com.example.app_sports.R
 import com.example.app_sports.login_activity.pickers.DateSetListener
+import com.example.app_sports.login_activity.pickers.TimeSetListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -71,8 +72,8 @@ class NewActivityFragment : Fragment() {
 		})
 
 		time_et.setOnClickListener(View.OnClickListener {
-			val setListener = DateSetListener(time_et)
-			val timePickerDialog = TimePickerDialog(requireContext(), )
+			val setListener = TimeSetListener(time_et)
+			val timePickerDialog = TimePickerDialog(requireContext(), setListener, 12, 0, true)
 		})
 
 		add_btn.setOnClickListener(View.OnClickListener {
