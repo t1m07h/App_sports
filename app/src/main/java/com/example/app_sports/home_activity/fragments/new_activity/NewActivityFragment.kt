@@ -96,6 +96,8 @@ class NewActivityFragment : Fragment() {
 		})
 	}
 
+	fun SetDate()
+
 	private fun createActivityMetadata(user: String, id: String): ActivitiesMetadata {
 		val currentDateTime = LocalDateTime.now()
 		val currentDate = currentDateTime.format(DateTimeFormatter.ISO_DATE)
