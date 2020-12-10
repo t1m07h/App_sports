@@ -34,7 +34,9 @@ class UserActivitiesViewModel(application: Application) : AndroidViewModel(appli
 		 var i = 0
 		while(list[i] != null) {
 			if (list[i] != null) {
-				if (i > 0 and list[i - 1].date < list[i].date) {
+				val date1 = list[i - 1].date.replace('/', '').toInt()
+				val date2 = list[i].date.replace('/', '').toInt()
+				if (i > 0 && date1 < date2) {
 					val tmp = list[i]
 					list[i] = list[i - 1]
 					list[i - 1] = tmp
