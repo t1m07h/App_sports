@@ -34,8 +34,8 @@ class UserActivitiesViewModel(application: Application) : AndroidViewModel(appli
 		 var i = 0
 		while(list[i] != null) {
 			if (list[i] != null) {
-				val date1 = list[i - 1].date.replace('/', '').toInt()
-				val date2 = list[i].date.replace('/', '').toInt()
+				val date1 = replaceChar(list[i - 1].date, '/').toInt()
+				val date2 = replaceChar(list[i].date, '/').toInt()
 				if (i > 0 && date1 < date2) {
 					val tmp = list[i]
 					list[i] = list[i - 1]
@@ -48,5 +48,14 @@ class UserActivitiesViewModel(application: Application) : AndroidViewModel(appli
 
 	fun sortActivitiesList(list: MutableList<ActivitiesData>): MutableList<ActivitiesData>? {
 		return (list)
+	}
+
+	fun replaceChar(str: String, char: Char): String{
+		var new: String = ""
+		for(c in str) {
+			if (c != char) new += c
+		}
+
+		return (new)
 	}
 }

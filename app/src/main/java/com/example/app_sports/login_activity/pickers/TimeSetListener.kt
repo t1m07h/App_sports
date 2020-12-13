@@ -7,7 +7,7 @@ import org.w3c.dom.Text
 
 class TimeSetListener(val time_tv: TextView): TimePickerDialog.OnTimeSetListener {
 	override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-		val time: String = hourOfDay+':'+minute
+		val time: String = hourOfDay.toString()+':'+minute.toString()
 		time_tv.text = time
 	}
 }
