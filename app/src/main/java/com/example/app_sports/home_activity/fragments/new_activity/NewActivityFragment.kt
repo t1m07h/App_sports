@@ -17,7 +17,7 @@ import android.widget.Spinner
 import com.example.app_sports.Model.ActivitiesModel.ActivitiesData
 import com.example.app_sports.Model.ActivitiesModel.ActivitiesMetadata
 import com.example.app_sports.R
-import com.example.app_sports.login_activity.pickers.DateSetListener
+import com.example.app_sports.home_activity.DatePickerFragment
 import com.example.app_sports.login_activity.pickers.TimeSetListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
@@ -66,9 +66,9 @@ class NewActivityFragment : Fragment() {
 		}
 
 		date_et.setOnClickListener(View.OnClickListener {
-			val setListener = DateSetListener(date_et)
-			val datePickerDialog = DatePickerDialog(requireContext(), setListener, 2020, 12, 1)
-			datePickerDialog.show()
+			val datePickerDialog = DatePickerFragment(date_et)
+//			val datePickerDialog = DatePickerDialog(requireContext(), setListener, 2020, 12, 1)
+			datePickerDialog.show(parentFragmentManager, "Date Picker")
 		})
 
 		time_et.setOnClickListener(View.OnClickListener {
