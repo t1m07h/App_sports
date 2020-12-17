@@ -67,7 +67,6 @@ class NewActivityFragment : Fragment() {
 
 		date_et.setOnClickListener(View.OnClickListener {
 			val datePickerDialog = DatePickerFragment(date_et)
-//			val datePickerDialog = DatePickerDialog(requireContext(), setListener, 2020, 12, 1)
 			datePickerDialog.show(parentFragmentManager, "Date Picker")
 		})
 
