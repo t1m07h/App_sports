@@ -72,7 +72,7 @@ class NewActivityFragment : Fragment() {
 
 		time_et.setOnClickListener(View.OnClickListener {
 			val setListener = TimeSetListener(time_et)
-			val timePickerDialog = TimePickerDialog(requireContext(), setListener, 12, 0, true)
+			val timePickerDialog = TimePickerDialog(requireContext(), setListener, 12, 0, true).show()
 		})
 
 		add_btn.setOnClickListener(View.OnClickListener {
@@ -86,6 +86,7 @@ class NewActivityFragment : Fragment() {
 					date_et.text.toString(),
 					time_et.text.toString(),
 					level_et.selectedItem.toString(),
+					0,
 					meta
 				)
 
