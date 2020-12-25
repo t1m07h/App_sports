@@ -28,6 +28,7 @@ class FlowListAdapter(): RecyclerView.Adapter<FlowListAdapter.MyViewHolder>() {
 		holder.itemView.activity_hour.text = current_activity.time
 		holder.itemView.activity_place.text = current_activity.place
 		holder.itemView.activity_level.text = current_activity.level
+		holder.itemView.RegisteredNbr.text = current_activity.registered
 		// TODO: 06/11/20 set sport image
 	}
 

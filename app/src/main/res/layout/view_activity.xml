@@ -90,4 +90,12 @@
         android:text="activity_level"
         app:layout_constraintStart_toEndOf="@+id/activity_img"
         app:layout_constraintTop_toBottomOf="@+id/activity_date" />
+
+    <TextView
+        android:id="@+id/RegisteredNbr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        tools:layout_editor_absoluteX="320dp"
+        tools:layout_editor_absoluteY="115dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
