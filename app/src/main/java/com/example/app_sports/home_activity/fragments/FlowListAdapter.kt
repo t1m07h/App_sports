@@ -30,6 +30,7 @@ class FlowListAdapter(): RecyclerView.Adapter<FlowListAdapter.MyViewHolder>() {
 		holder.itemView.activity_level.text = current_activity.level
 		holder.itemView.RegisteredNbr.text = current_activity.registered.toString()
 		// TODO: 06/11/20 set sport image
+
 	}
 
 	override fun getItemCount(): Int {
