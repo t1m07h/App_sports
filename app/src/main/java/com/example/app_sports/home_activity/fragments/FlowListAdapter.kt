@@ -31,6 +31,10 @@ class FlowListAdapter(): RecyclerView.Adapter<FlowListAdapter.MyViewHolder>() {
 		holder.itemView.RegisteredNbr.text = current_activity.registered.toString()
 		// TODO: 06/11/20 set sport image
 
+		holder.itemView.activity_register_btn.setOnClickListener(View.OnClickListener {
+			// TODO: 31/12/20 check if the current user is nto registered yet
+		})
+
 	}
 
 	override fun getItemCount(): Int {
