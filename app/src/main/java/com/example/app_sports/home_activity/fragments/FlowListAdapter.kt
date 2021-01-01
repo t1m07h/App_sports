@@ -6,10 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app_sports.R
 import com.example.app_sports.Model.ActivitiesModel.ActivitiesData
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.view_activity.view.*
 
 class FlowListAdapter(): RecyclerView.Adapter<FlowListAdapter.MyViewHolder>() {
 	private var activity_list = emptyList<ActivitiesData>()
+	private var auth = FirebaseAuth.getInstance()
+	private val user = auth.currentUser
 
 	class MyViewHolder(item_view: View): RecyclerView.ViewHolder(item_view) {}
 
@@ -32,7 +35,8 @@ class FlowListAdapter(): RecyclerView.Adapter<FlowListAdapter.MyViewHolder>() {
 		// TODO: 06/11/20 set sport image
 
 		holder.itemView.activity_register_btn.setOnClickListener(View.OnClickListener {
-			// TODO: 31/12/20 check if the current user is nto registered yet
+			// TODO: 31/12/20 check if the current user is registered yet
+			// TODO: 01/01/21 else add the current user to the activity
 		})
 
 	}
