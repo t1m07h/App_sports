@@ -8,10 +8,10 @@ data class ActivitiesData(
 	val date: String,
 	val time: String,
 	val level: String,
-	val registered: Int
+	val registered: Int,
 	val metadata: ActivitiesMetadata
 ) {
-	constructor() : this("", "", "", "", "", "", "",
+	constructor() : this("", "", "", "", "", "", "", 0,
 		ActivitiesMetadata("", "", "", "")
 	){}
 }
